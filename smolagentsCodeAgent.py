@@ -34,15 +34,36 @@ def suggest_menu(occasion: str) -> str:
     else:
         return "Custom menu for the butler."
     
+
+@tool
+def catering_service_tool(query: str) -> str:
+    """
+    This tool returns the highest-rated catering service in Gotham City.
     
+    Args:
+        query: A search term for finding catering services.
+    """
+    # Example list of catering services and their ratings
+    services = {
+        "Gotham Catering Co.": 4.9,
+        "Wayne Manor Catering": 4.8,
+        "Gotham City Events": 4.7,
+    }
+    
+    # Find the highest rated catering service (simulating search query filtering)
+    best_service = max(services, key=services.get)
+    
+    return best_service
+
+
+
 #agent = CodeAgent(tools=[DuckDuckGoSearchTool()], model=m)
 #agent = CodeAgent(tools=[suggest_menu], model=m)
 agent = CodeAgent(tools=[], model=m, additional_authorized_imports=['datetime'])
 
+
 #agent.run("Search for the best music recommendations for a party at the Wayne's mansion.")
-
 #agent.run("Prepare a superhero menu for the pary.")
-
 agent.run(
     """
     Alfred needs to prepare for the party. Here are the tasks:
